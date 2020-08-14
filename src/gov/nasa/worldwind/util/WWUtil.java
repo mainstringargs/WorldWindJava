@@ -1292,4 +1292,28 @@ public class WWUtil
             normals.put(i3 + 2, (float) n3.z);
         }
     }
+    
+	/**
+	 * Gets the package using reflection
+	 *
+	 * @param classLoader the class loader
+	 * @param pkgName the pkg name
+	 * @return the package
+	 */
+	public static Package getPackage(ClassLoader classLoader, String pkgName) {
+
+		Package p = null;
+		try {
+			Method getPackage = ClassLoader.class.getDeclaredMethod("getPackage", String.class);
+
+			getPackage.setAccessible(true);
+
+			p = (Package) getPackage.invoke(classLoader, pkgName);
+		} catch (Exception e) {
+			e.printStackTrace();
+
+		}
+
+		return p;
+	}
 }

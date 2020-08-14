@@ -28,6 +28,7 @@
 package gov.nasa.worldwindx.examples;
 
 import gov.nasa.worldwind.Configuration;
+import gov.nasa.worldwind.util.WWUtil;
 
 import com.jogamp.opengl.*;
 import com.jogamp.opengl.awt.GLCanvas;
@@ -136,7 +137,7 @@ public class WorldWindDiagnostics {
             try {
                 getClass().getClassLoader().loadClass(pkgName + ".GL");
 
-                Package p = getClass().getClassLoader().getDefinedPackage(pkgName);
+                Package p = WWUtil.getPackage(getClass().getClassLoader(), pkgName);
                 if (p == null) {
                     sb.append("WARNING: Package.getPackage(" + pkgName + ") is null\n");
                 } else {

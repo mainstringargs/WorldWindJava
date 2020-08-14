@@ -27,6 +27,8 @@
  */
 package gov.nasa.worldwind.util;
 
+import java.lang.reflect.Method;
+
 /**
  * This program returns the version and implementation information for the Java Bindings for OpenGL (R) implementation
  * found in the CLASSPATH. This information is also found in the manifest for jogl-all.jar, and this program uses the
@@ -51,7 +53,7 @@ public class JOGLVersionInfo {
             classLoader.loadClass(pkgName + "." + className);
 
             // TODO: message logging
-            p = classLoader.getDefinedPackage(pkgName);
+            p = WWUtil.getPackage(classLoader, pkgName);
             if (p == null) {
                 System.out.println("WARNING: Package.getPackage(" + pkgName + ") is null");
             }
